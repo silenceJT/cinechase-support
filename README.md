@@ -28,13 +28,48 @@ A personal media player for Apple TV.
 
 For questions or issues, please [open an issue](https://github.com/silenceJT/cine-chase/issues) or email: your-email@example.com
 
-## Privacy
-
-CineChase does not collect any personal data. All sources and preferences are stored locally on your device.
-
 ## Disclaimer
 
 CineChase is a media player tool. It does not provide any video content. Users are responsible for ensuring they have the right to access any content they stream.
+
+# Privacy Policy for CineChase
+
+## Overview
+
+CineChase ("the App") is a personal media player for Apple TV. We are committed to protecting your privacy.
+
+## Data Collection
+
+**We do not collect any personal data.**
+
+The App:
+- Does NOT collect personal information
+- Does NOT track your viewing habits
+- Does NOT share any data with third parties
+- Does NOT use analytics or tracking services
+- Does NOT require account registration
+
+## Local Storage
+
+All data is stored locally on your device:
+- Video sources you add
+- Bookmarks and favorites
+- Viewing history and progress
+- App preferences
+
+This data never leaves your device and is not accessible to us.
+
+## Third-Party Content
+
+The App is a media player tool. Any video sources you add are your responsibility. We do not host, provide, or control any video content.
+
+## Children's Privacy
+
+The App does not collect data from anyone, including children under 13.
+
+## Changes
+
+We may update this policy occasionally. Changes will be posted on this page.
 
 ## License
 
