@@ -1,76 +1,138 @@
-# CineChase
+# CineChase Support
 
-A personal media player for Apple TV.
+## CineChase
 
-## Features
+CineChase is a personal media player and content organizer designed specifically for Apple TV.
 
-- **Stream Your Content** - Play videos from URLs you provide (M3U8, MP4, etc.)
-- **Organize Library** - Manage your personal video sources
-- **Beautiful UI** - Native tvOS interface optimized for big screens
-- **Bookmarks** - Save favorites and continue watching
-- **Fast Search** - Find content across your sources
+It allows users to browse, organize, and play video content from their own sources using a clean, native tvOS interface optimized for large screens and remote control navigation.
 
-## How to Use
+CineChase does **not** provide, host, or distribute any video content.
 
-1. Open CineChase on your Apple TV
-2. Go to **Sources** tab
-3. Add your video source URL
-4. Browse and play your content
+---
+
+## Key Features
+
+- **Play Your Own Content**  
+  Stream and play videos from URLs you provide, including HLS (M3U8), MP4, MKV, and other common formats.
+
+- **Source Management**  
+  Add, edit, and manage your personal video sources in one place.
+
+- **Native tvOS Experience**  
+  Designed specifically for Apple TV with focus-based navigation, smooth animations, and a big-screen friendly layout.
+
+- **Bookmarks & Continue Watching**  
+  Save favorites and resume playback across sessions.
+
+- **Fast Search**  
+  Search across all your added sources quickly and efficiently.
+
+---
+
+## How CineChase Works
+
+CineChase functions as a media player and organizer only.
+
+To use the app:
+
+1. Open CineChase on your Apple TV  
+2. Go to the **Sources** tab  
+3. Add a video source URL that you have access to  
+4. CineChase reads and organizes the media from that source  
+5. Select any item to play it directly  
+
+CineChase works similarly to a web browser or local media player — it plays media from locations specified by the user.
+
+---
 
 ## Supported Formats
 
-- M3U8 / HLS
-- MP4
-- MKV
-- And more...
+CineChase supports common streaming and video formats, including:
 
-## Support
+- HLS / M3U8  
+- MP4  
+- MKV  
+- Other standard video formats supported by tvOS  
 
-For questions or issues, please [open an issue](https://github.com/silenceJT/cine-chase/issues) or email: your-email@example.com
+Format compatibility may depend on the encoding and the capabilities of your Apple TV device.
 
-## Disclaimer
+---
 
-CineChase is a media player tool. It does not provide any video content. Users are responsible for ensuring they have the right to access any content they stream.
+## Subscription & Free Trial
 
-# Privacy Policy for CineChase
+CineChase offers a subscription with a free trial for eligible users.
 
-## Overview
+- New users may be eligible for a free trial  
+- After the trial period, the subscription automatically renews unless canceled  
+- You can manage or cancel your subscription at any time through your Apple ID settings on Apple TV  
 
-CineChase ("the App") is a personal media player for Apple TV. We are committed to protecting your privacy.
+All subscriptions and payments are handled entirely by Apple via the App Store.  
+CineChase does **not** process or store payment information.
 
-## Data Collection
+---
 
-**We do not collect any personal data.**
+## Data & Privacy
 
-The App:
-- Does NOT collect personal information
-- Does NOT track your viewing habits
-- Does NOT share any data with third parties
-- Does NOT use analytics or tracking services
-- Does NOT require account registration
+Your privacy is important to us.
 
-## Local Storage
+### Data Collection
 
-All data is stored locally on your device:
-- Video sources you add
-- Bookmarks and favorites
-- Viewing history and progress
-- App preferences
+CineChase does **not** collect, transmit, or sell personal data.
+
+The app:
+
+- Does NOT collect personal information  
+- Does NOT require account registration  
+- Does NOT track viewing behavior  
+- Does NOT use analytics, ads, or third-party tracking services  
+
+### Local Storage
+
+All data is stored locally on your Apple TV device, including:
+
+- Video source URLs you add  
+- Bookmarks and favorites  
+- Viewing history and playback progress  
+- App preferences  
 
 This data never leaves your device and is not accessible to us.
 
-## Third-Party Content
+---
 
-The App is a media player tool. Any video sources you add are your responsibility. We do not host, provide, or control any video content.
+## Content Responsibility
 
-## Children's Privacy
+CineChase is a media player and organizer only.
 
-The App does not collect data from anyone, including children under 13.
+- CineChase does NOT host, provide, or distribute any video content  
+- All media sources are added manually by the user  
+- Users are responsible for ensuring they have the legal right to access and stream any content they add  
+
+CineChase has no control over the availability, legality, or ownership of third-party content.
+
+---
+
+## Children’s Privacy
+
+CineChase does not knowingly collect any data from children under the age of 13.
+
+---
+
+## Support & Contact
+
+If you have questions, feedback, or encounter any issues, please contact us:
+
+- Email: cinechase.app@gmail.com
+- Website: https://silencejt.github.io/cinechase-support/
+
+---
 
 ## Changes
 
-We may update this policy occasionally. Changes will be posted on this page.
+We may update this page from time to time.  
+Any changes will be posted here.
+
+---
 
 ## License
 
-© 2025 All rights reserved.
+© 2025 CineChase. All rights reserved.
