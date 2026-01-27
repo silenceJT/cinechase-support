@@ -1,0 +1,11 @@
+[
+  {
+    "id": "00000000-0000-0000-0000-DEMO00000001",
+    "name": "Demo Big Buck Bunny",
+    "type": 0,
+    "api": "https://silencejt.github.io/cinechase-support/demo-video.json",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Big.Buck.Bunny.-.Landscape.png",
+    "nsfw": false,
+    "status": true
+  }
+]
