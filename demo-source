@@ -1,0 +1,29 @@
+{
+  "code": 1,
+  "msg": "Demo Content for App Review",
+  "page": "1",
+  "pagecount": 1,
+  "limit": "20",
+  "total": 1,
+  "list": [
+    {
+      "vod_id": 10001,
+      "type_id": 7,
+      "group_id": 0,
+      "vod_name": "Big Buck Bunny (Demo)",
+      "vod_sub": "Open licensed animation used for demo purposes",
+      "vod_pic": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Big.Buck.Bunny.-.Landscape.png",
+      "vod_douban_score": "8.2",
+      "vod_year": "2008",
+      "vod_area": "Open Source",
+      "vod_lang": "",
+      "vod_class": "Demo",
+      "vod_content": "Big Buck Bunny is licensed under Creative Commons Attribution 3.0 (CC-BY 3.0). Blender Foundation | www.bigbuckbunny.org",
+      "vod_play_from": "Big Buck Bunny CC-BY 3.0",
+      "vod_play_url": "DemoQuality$https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8",
+      "license": "Creative Commons Attribution 3.0 (CC-BY 3.0)",
+      "license_attribution": "(c) copyright Blender Foundation | www.bigbuckbunny.org",
+      "license_url": "https://creativecommons.org/licenses/by/3.0/"
+    }
+  ]
+}
