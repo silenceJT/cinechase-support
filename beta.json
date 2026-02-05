@@ -1,0 +1,10 @@
+{
+    "id": "niuniuziyuan",
+    "name": "牛牛视频",
+    "type": 0,
+    "api": "https://api.niuniuzy.me/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true
+  }
+]
