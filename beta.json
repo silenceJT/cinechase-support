@@ -7,5 +7,32 @@
     "logo": "",
     "nsfw": false,
     "status": true
+  },
+  {
+    "id": "4663D488-D9F3-40AE-A106-448DB321850C",
+    "name": "最大资源",
+    "type": 0,
+    "api": "http://zuidazy.me/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true
+  },
+  {
+    "id": "9C9CF8B9-7E04-497B-BA84-A2241FF918E1",
+    "name": "丫丫资源",
+    "type": 0,
+    "api": "https://cj.yayazy.net/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true
+  },
+  {
+    "id": "1EB447A9-BEA6-4303-9364-858A81B87702",
+    "name": "茅台资源",
+    "type": 0,
+    "api": "https://caiji.maotaizy.cc/api.php/provide/vod/at/josn",
+    "logo": "",
+    "nsfw": false,
+    "status": true
   }
 ]
