@@ -6,7 +6,7 @@
     "api": "https://api.niuniuzy.me/api.php/provide/vod",
     "logo": "",
     "nsfw": false,
-    "status": true，
+    "status": true,
     "extra": {
       "gfw": false
     }
@@ -18,7 +18,7 @@
     "api": "http://zuidazy.me/api.php/provide/vod",
     "logo": "",
     "nsfw": false,
-    "status": true，
+    "status": true,
     "extra": {
       "gfw": false
     }
@@ -30,7 +30,7 @@
     "api": "https://cj.yayazy.net/api.php/provide/vod",
     "logo": "",
     "nsfw": false,
-    "status": true，
+    "status": true,
     "extra": {
       "gfw": false
     }
@@ -42,7 +42,7 @@
     "api": "https://caiji.maotaizy.cc/api.php/provide/vod/at/josn",
     "logo": "",
     "nsfw": false,
-    "status": true，
+    "status": true,
     "extra": {
       "gfw": false
     }
