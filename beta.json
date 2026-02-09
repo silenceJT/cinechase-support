@@ -46,5 +46,77 @@
     "extra": {
       "gfw": false
     }
-  }
+  },
+  {
+    "id": "7DCB5007-2C64-4DF9-A51D-408FB59BF2E5",
+    "name": "樱花资源",
+    "type": 0,
+    "api": "http://m3u8.apiyhzy.com/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
+  {
+    "id": "B2A6DB2D-2753-4F4E-BAA7-FFAF82FF5E08",
+    "name": "金鹰资源",
+    "type": 0,
+    "api": "https://jyzyapi.com/provide/vod/from/jinyingm3u8",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
+  {
+    "id": "20F2C171-9D39-4928-9FB0-95D72ACD008B",
+    "name": "爱奇艺资源",
+    "type": 0,
+    "api": "https://iqiyizyapi.com/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
+  {
+    "id": "CF90FF2D-E4DE-43E7-86B8-E1487BF0D7F0",
+    "name": "飘零影院",
+    "type": 0,
+    "api": "https://p2100.net/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
+  {
+    "id": "F7B5B5E1-A302-459A-B323-1861F5C81031",
+    "name": "极速资源",
+    "type": 0,
+    "api": "https://jszyapi.com/api.php/provide/vod/at/json",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
+  {
+    "id": "5D577FCA-33D7-4A5C-A0B2-1A3768A1EF07",
+    "name": "暴风资源",
+    "type": 0,
+    "api": "https://bfzyapi.com/api.php/provide/vod",
+    "logo": "",
+    "nsfw": false,
+    "status": true,
+    "extra": {
+      "gfw": false
+    }
+  },
 ]
