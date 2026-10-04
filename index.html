@@ -146,10 +146,20 @@
   .btn { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; transition: transform .25s var(--ease), filter .25s; }
   .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
   .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
-  .xhs { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; }
-  .xhs img { width: 120px; height: 120px; border-radius: 12px; border: 1px solid var(--line); }
-  .xhs .token { font-size: 13px; color: var(--text-3); word-break: break-all; margin-top: 8px; }
   @media (max-width: 760px) { .community .grid { grid-template-columns: 1fr; } }
+
+  .modal { border: 1px solid var(--line); border-radius: var(--radius-lg); background: var(--surface); color: var(--text); padding: 36px 32px 32px; width: min(92vw, 400px); text-align: center; }
+  .modal::backdrop { background: rgba(10,11,14,.72); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+  .modal h3 { font-size: 22px; font-weight: 600; margin-bottom: 20px; }
+  .modal img { width: 280px; height: 280px; margin: 0 auto 18px; border-radius: 16px; }
+  .modal p { color: var(--text-2); font-size: 15px; margin-bottom: 22px; }
+  .modal .btn { align-self: center; }
+  .modal-close { position: absolute; top: 12px; right: 12px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--surface-2); color: var(--text-2); font-size: 22px; line-height: 1; cursor: pointer; }
+  .modal-close:hover { color: var(--text); }
+  .modal-close:focus-visible, .btn:focus-visible, .lang:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+  .modal[open] { animation: pop .25s var(--ease); }
+  @keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.98); } }
+  @media (prefers-reduced-motion: reduce) { .modal[open] { animation: none; } }
 
   footer { border-top: 1px solid var(--line); padding: 40px 0 56px; color: var(--text-3); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: space-between; align-items: center; }
@@ -314,13 +324,9 @@
       </div>
       <div class="card reveal">
         <h3><span lang-en>Xiaohongshu</span><span lang-zh>小红书</span></h3>
-        <div class="xhs">
-          <img src="assets/xhs-qr.jpg" alt="Xiaohongshu group QR code" loading="lazy">
-          <div>
-            <p><span lang-en>Scan in the Xiaohongshu app, or copy the group code and open the app.</span><span lang-zh>用小红书 App 扫码，或复制群口令后打开小红书。</span></p>
-            <button class="btn secondary" type="button" id="xhs-copy" data-token="3【长按复制，小红书APP见】 10月24日到期，&quot;CineChase公测群&quot;志同道合处 HU7331 :/#d🍖🍋😆🐷🐨🍎🥕🤗🐔😯🐧🍅"><span lang-en>Copy group code</span><span lang-zh>复制群口令</span></button>
-          </div>
-        </div>
+        <p><span lang-en>Scan the group QR code in the Xiaohongshu app, or copy the group code.</span><span lang-zh>在小红书 App 内扫描群二维码，或复制群口令加入。</span></p>
+        <button class="btn" type="button" id="xhs-open"><span lang-en>Join the Xiaohongshu group</span><span lang-zh>加入小红书群</span></button>
+      </div>
       </div>
     </div>
     <p class="note reveal" style="margin-top:20px"><span lang-en>Email works too: </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
@@ -374,6 +380,14 @@
   </div>
 </footer>
 
+<dialog class="modal" id="xhs-modal" aria-labelledby="xhs-title">
+  <button class="modal-close" type="button" id="xhs-close" aria-label="Close">&times;</button>
+  <h3 id="xhs-title"><span lang-en>Join the Xiaohongshu group</span><span lang-zh>加入小红书群</span></h3>
+  <img src="assets/xhs-qr.jpg" alt="Xiaohongshu group QR code" width="280" height="280">
+  <p><span lang-en>Open Xiaohongshu, tap the scan icon and point it at this code. Or copy the group code below and open the app.</span><span lang-zh>打开小红书，点击扫一扫并对准此二维码。或复制下方群口令后打开小红书。</span></p>
+  <button class="btn secondary" type="button" id="xhs-copy" data-token="3【长按复制，小红书APP见】 10月24日到期，&quot;CineChase公测群&quot;志同道合处 HU7331 :/#d🍖🍋😆🐷🐨🍎🥕🤗🐔😯🐧🍅"><span lang-en>Copy group code</span><span lang-zh>复制群口令</span></button>
+</dialog>
+
 <script>
   (function () {
     var root = document.documentElement, btn = document.getElementById('lang');
@@ -382,6 +396,10 @@
     function apply() { root.setAttribute('data-lang', zh ? 'zh' : 'en'); root.lang = zh ? 'zh-Hans' : 'en'; btn.textContent = zh ? 'EN' : '中文'; }
     btn.addEventListener('click', function () { zh = !zh; try { localStorage.setItem('cc-lang', zh ? 'zh' : 'en'); } catch (e) {} apply(); });
     apply();
+    var dlg = document.getElementById('xhs-modal');
+    document.getElementById('xhs-open').addEventListener('click', function () { dlg.showModal(); });
+    document.getElementById('xhs-close').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
     var copy = document.getElementById('xhs-copy');
     if (copy) copy.addEventListener('click', function () {
       var t = copy.getAttribute('data-token'), label = copy.innerHTML;
