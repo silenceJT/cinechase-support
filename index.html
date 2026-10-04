@@ -115,8 +115,10 @@
   @media (max-width: 760px) { .how .cols { grid-template-columns: 1fr; } }
 
   .tv .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
-  .tv-frame { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 80px rgba(0,0,0,.55); background: #000; }
-  .tv-frame img { width: 100%; }
+  .both { position: relative; padding: 0 0 18% 0; }
+  .tv-frame { border-radius: 14px; overflow: hidden; border: 6px solid #0B0C0F; outline: 1px solid var(--line); box-shadow: 0 40px 80px rgba(0,0,0,.55); background: #000; margin-left: 8%; }
+  .tv-frame img { width: 100%; display: block; }
+  .both .phone { position: absolute; left: -2%; bottom: -6%; width: 26%; transform: rotate(-6deg); filter: drop-shadow(0 30px 50px rgba(0,0,0,.6)); }
   .tv ul { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; color: var(--text-2); }
   .tv li { padding-left: 22px; position: relative; }
   .tv li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--brand); }
@@ -143,6 +145,7 @@
   .community .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .community .card { display: flex; flex-direction: column; gap: 12px; }
   .community .card p { flex: 1; }
+  .community .card > .btn { align-self: stretch; justify-content: center; }
   .btn { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; transition: transform .25s var(--ease), filter .25s; }
   .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
   .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
@@ -274,7 +277,10 @@
         <li><span lang-en>AirPlay and Picture in Picture on iPhone, through the system player.</span><span lang-zh>iPhone 上通过系统播放器支持 AirPlay 与画中画。</span></li>
       </ul>
     </div>
-    <div class="tv-frame reveal"><img src="assets/topshelf.webp" alt="CineChase on the Apple TV home screen" loading="lazy"></div>
+    <div class="both reveal" aria-hidden="true">
+      <div class="tv-frame"><img src="assets/shot-tv-browse.webp" alt="" loading="lazy"></div>
+      <div class="phone"><div class="screen"><img src="assets/shot-discover.webp" alt="" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+    </div>
   </div>
 </section>
 
@@ -329,7 +335,7 @@
       </div>
       </div>
     </div>
-    <p class="note reveal" style="margin-top:20px"><span lang-en>Email works too: </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
+    <p class="card reveal" style="margin-top:20px;display:block;text-align:center;color:var(--text-2)"><span lang-en>Email works too: </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
   </div>
 </section>
 
@@ -383,7 +389,7 @@
 <dialog class="modal" id="xhs-modal" aria-labelledby="xhs-title">
   <button class="modal-close" type="button" id="xhs-close" aria-label="Close">&times;</button>
   <h3 id="xhs-title"><span lang-en>Join the Xiaohongshu group</span><span lang-zh>加入小红书群</span></h3>
-  <img src="assets/xhs-qr.jpg" alt="Xiaohongshu group QR code" width="280" height="280">
+  <img src="assets/xhs-qr.png" alt="Xiaohongshu group QR code" width="280" height="280">
   <p><span lang-en>Open Xiaohongshu, tap the scan icon and point it at this code. Or copy the group code below and open the app.</span><span lang-zh>打开小红书，点击扫一扫并对准此二维码。或复制下方群口令后打开小红书。</span></p>
   <button class="btn secondary" type="button" id="xhs-copy" data-token="3【长按复制，小红书APP见】 10月24日到期，&quot;CineChase公测群&quot;志同道合处 HU7331 :/#d🍖🍋😆🐷🐨🍎🥕🤗🐔😯🐧🍅"><span lang-en>Copy group code</span><span lang-zh>复制群口令</span></button>
 </dialog>
