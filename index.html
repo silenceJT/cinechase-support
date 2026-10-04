@@ -60,6 +60,9 @@
   .nav-links a:hover { color: var(--text); }
   .lang { font-size: 13px; font-weight: 600; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text-2); background: transparent; cursor: pointer; font-family: inherit; }
   .lang:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+  .nav-right { display: flex; align-items: center; gap: 10px; }
+  .nav-cta { font-size: 13px; font-weight: 600; padding: 8px 14px; border-radius: 999px; background: var(--text); color: var(--bg); transition: transform .25s var(--ease); }
+  .nav-cta:hover { transform: translateY(-1px); }
   @media (max-width: 720px) { .nav-links { display: none; } }
 
   /* hero */
@@ -74,6 +77,7 @@
   .badge small { display: block; font-size: 11px; font-weight: 500; color: #333; }
   .badge:hover { transform: translateY(-2px); }
   .badge svg { width: 22px; height: 22px; }
+  .badge, .badge.ghost { min-height: 52px; }
   .badge.ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
   .badge.ghost small { color: var(--text-3); }
   .hero-media { position: relative; height: clamp(420px, 46vw, 620px); }
@@ -91,13 +95,14 @@
   }
 
   /* sections */
-  section { padding: clamp(72px, 9vw, 128px) 0; }
+  section { padding: clamp(72px, 9vw, 128px) 0; scroll-margin-top: 64px; }
   .section-head { max-width: 640px; margin-bottom: clamp(36px, 5vw, 64px); }
   .section-head p { margin-top: 16px; font-size: 18px; color: var(--text-2); }
 
   .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
   .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 28px 0; overflow: clip; display: flex; flex-direction: column; min-height: 560px; transition: transform .35s var(--ease), border-color .35s; }
   .feature:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.16); }
+  .feature .num { font-size: 13px; font-weight: 600; letter-spacing: .12em; color: var(--brand); margin-bottom: 14px; font-variant-numeric: tabular-nums; }
   .feature h3 { font-size: 26px; font-weight: 700; }
   .feature h3 em { font-style: normal; color: var(--brand); }
   .feature p { margin: 12px 0 28px; color: var(--text-2); font-size: 16px; }
@@ -107,7 +112,7 @@
 
   .how { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
   .how .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-  .card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
+  .card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
   .card h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
   .card p { color: var(--text-2); font-size: 16px; }
   .card code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; color: var(--text); background: var(--surface-2); padding: 2px 7px; border-radius: 6px; }
@@ -145,8 +150,11 @@
   .community .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .community .card { display: flex; flex-direction: column; gap: 12px; }
   .community .card p { flex: 1; }
+  .aside { margin-top: 28px; text-align: center; color: var(--text-3); font-size: 15px; }
+  .aside a { color: var(--text); border-bottom: 1px solid rgba(255,255,255,.25); }
+  .aside a:hover { border-color: var(--brand); }
   .community .card > .btn { align-self: stretch; justify-content: center; }
-  .btn { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; transition: transform .25s var(--ease), filter .25s; }
+  .btn { appearance: none; -webkit-appearance: none; border: 0; margin: 0; font: inherit; line-height: 1.2; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; transition: transform .25s var(--ease), filter .25s; }
   .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
   .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
   @media (max-width: 760px) { .community .grid { grid-template-columns: 1fr; } }
@@ -166,6 +174,7 @@
 
   footer { border-top: 1px solid var(--line); padding: 40px 0 56px; color: var(--text-3); font-size: 14px; }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: space-between; align-items: center; }
+  footer .brand { font-size: 15px; color: var(--text-2); }
   footer a:hover { color: var(--text); }
 
   /* reveal */
@@ -192,7 +201,10 @@
       <a href="#community"><span lang-en>Community</span><span lang-zh>社群</span></a>
       <a href="#privacy"><span lang-en>Privacy</span><span lang-zh>隐私</span></a>
     </div>
-    <button class="lang" id="lang" type="button" aria-label="Switch language">中文</button>
+    <div class="nav-right">
+      <button class="lang" id="lang" type="button" aria-label="Switch language">中文</button>
+      <a class="nav-cta" href="https://apps.apple.com/app/id6757168913" rel="noopener"><span lang-en>Download</span><span lang-zh>下载</span></a>
+    </div>
   </div>
 </nav>
 
@@ -227,16 +239,19 @@
     </div>
     <div class="features">
       <article class="feature reveal">
+        <div class="num">01</div>
         <h3><span lang-en>Search once. <em>Find it everywhere.</em></span><span lang-zh>搜一次，<em>全都找到。</em></span></h3>
         <p><span lang-en>One search runs across every source you've added. The same title from several sources is merged into one result, so you pick the source, not the duplicate.</span><span lang-zh>一次搜索覆盖你添加的所有片源。同一部作品在不同片源的结果会合并为一条，你只需选择片源，而不是在重复项里挑。</span></p>
         <div class="phone"><div class="screen"><img src="assets/shot-search.webp" alt="CineChase search results merged across sources" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
       </article>
       <article class="feature reveal">
+        <div class="num">02</div>
         <h3><span lang-en>Stopped at episode 10? <em>Resume there.</em></span><span lang-zh>看到第 10 集？<em>接着看。</em></span></h3>
         <p><span lang-en>Continue Watching sits at the top of Discover. Every title remembers the episode and the position, even after you switch sources.</span><span lang-zh>“继续观看”就在发现页顶部。每部作品都记得你看到的集数和进度，切换片源也不会丢。</span></p>
         <div class="phone"><div class="screen"><img src="assets/shot-detail.webp" alt="CineChase detail page with Continue button" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
       </article>
       <article class="feature reveal">
+        <div class="num">03</div>
         <h3><span lang-en>Save it now. <em>Watch it later.</em></span><span lang-zh>先收藏，<em>稍后看。</em></span></h3>
         <p><span lang-en>Bookmarks and history live together in your Library, each tagged with the source it came from.</span><span lang-zh>收藏与历史都在“我的”里，并标明来自哪个片源。</span></p>
         <div class="phone"><div class="screen"><img src="assets/shot-library.webp" alt="CineChase library of bookmarked titles" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
@@ -335,7 +350,7 @@
       </div>
       </div>
     </div>
-    <p class="card reveal" style="margin-top:20px;display:block;text-align:center;color:var(--text-2)"><span lang-en>Email works too: </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
+    <p class="reveal aside"><span lang-en>Prefer email? </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
   </div>
 </section>
 
@@ -380,6 +395,7 @@
 
 <footer>
   <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="28" height="28">CineChase</a>
     <span>© 2025 CineChase</span>
     <span><span lang-en>Poster artwork © Blender Foundation, CC BY</span><span lang-zh>海报图片 © Blender Foundation，CC BY 授权</span></span>
     <span><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener"><span lang-en>Terms of Use</span><span lang-zh>使用条款</span></a> · <a href="#privacy"><span lang-en>Privacy</span><span lang-zh>隐私</span></a> · <a href="mailto:cinechase.app@gmail.com"><span lang-en>Support</span><span lang-zh>支持</span></a></span>
