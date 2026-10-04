@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CineChase — Every source. One app.</title>
+<meta name="description" content="CineChase plays the video sources and direct links you add, on iPhone and Apple TV. Search every source at once, pick up where you left off, keep a library.">
+<link rel="canonical" href="https://silencejt.github.io/cinechase-support/">
+<meta property="og:title" content="CineChase — Every source. One app.">
+<meta property="og:description" content="A player for your own video sources and direct links, on iPhone and Apple TV.">
+<meta property="og:image" content="https://silencejt.github.io/cinechase-support/assets/og.jpg">
+<meta property="og:url" content="https://silencejt.github.io/cinechase-support/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/png" href="assets/icon.png">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #16181D;
+    --surface: #1F2229;
+    --surface-2: #272B34;
+    --line: rgba(255,255,255,0.08);
+    --brand: #DE6628;
+    --brand-soft: rgba(222,102,40,0.16);
+    --premium: #E88523;
+    --text: #FFFFFF;
+    --text-2: rgba(255,255,255,0.72);
+    --text-3: rgba(255,255,255,0.55);
+    --radius: 16px;
+    --radius-lg: 28px;
+    --gutter: clamp(20px, 5vw, 64px);
+    --max: 1120px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    font-size: 17px; line-height: 1.55; -webkit-font-smoothing: antialiased; text-wrap: pretty;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { display: block; max-width: 100%; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3 { margin: 0; letter-spacing: -0.02em; line-height: 1.05; }
+  h2 { font-size: clamp(32px, 4.6vw, 52px); font-weight: 700; }
+  p { margin: 0; }
+  .muted { color: var(--text-2); }
+  .eyebrow { font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--brand); margin-bottom: 14px; }
+
+  /* nav */
+  .nav { position: sticky; top: 0; z-index: 10; backdrop-filter: saturate(150%) blur(18px); -webkit-backdrop-filter: saturate(150%) blur(18px); background: rgba(22,24,29,.72); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
+  .brand img { width: 28px; height: 28px; border-radius: 7px; }
+  .nav-links { display: flex; gap: 26px; font-size: 15px; color: var(--text-2); }
+  .nav-links a:hover { color: var(--text); }
+  .lang { font-size: 13px; font-weight: 600; padding: 7px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--text-2); background: transparent; cursor: pointer; font-family: inherit; }
+  .lang:hover { color: var(--text); border-color: rgba(255,255,255,.2); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* hero */
+  .hero { position: relative; overflow: clip; padding: clamp(64px, 9vw, 120px) 0 0; }
+  .hero::before { content: ""; position: absolute; inset: auto -20% -30% -20%; height: 70%; background: radial-gradient(ellipse at 50% 100%, rgba(222,102,40,.28), transparent 60%); pointer-events: none; }
+  .hero .wrap { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+  .hero h1 { font-size: clamp(44px, 6.6vw, 88px); font-weight: 700; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .lede { font-size: clamp(18px, 1.6vw, 22px); color: var(--text-2); max-width: 30ch; margin: 24px 0 36px; }
+  .badges { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+  .badge { display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px 12px 14px; border-radius: 12px; background: #fff; color: #000; font-weight: 600; font-size: 15px; line-height: 1.1; transition: transform .25s var(--ease), background .25s; }
+  .badge small { display: block; font-size: 11px; font-weight: 500; color: #333; }
+  .badge:hover { transform: translateY(-2px); }
+  .badge svg { width: 22px; height: 22px; }
+  .badge.ghost { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.18); }
+  .badge.ghost small { color: var(--text-3); }
+  .hero-media { position: relative; height: clamp(420px, 46vw, 620px); }
+  .phone { position: absolute; width: clamp(240px, 26vw, 330px); aspect-ratio: 1022 / 2082; filter: drop-shadow(0 40px 70px rgba(0,0,0,.55)) drop-shadow(0 8px 18px rgba(0,0,0,.35)); }
+  .phone .screen { position: absolute; left: 5.09%; top: 2.21%; width: 89.82%; height: 95.58%; border-radius: 13.7% / 6.3%; overflow: hidden; background: #000; }
+  .phone .screen img { width: 100%; height: 100%; object-fit: cover; }
+  .phone .bezel { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero .phone.a { left: 4%; bottom: -14%; transform: rotate(-8deg); z-index: 2; }
+  .hero .phone.b { right: 2%; bottom: -34%; transform: rotate(9deg); width: clamp(210px, 22vw, 290px); opacity: .95; }
+  @media (max-width: 860px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-media { height: clamp(420px, 110vw, 560px); }
+    .hero .phone.a { left: 8%; bottom: -16%; }
+    .hero .phone.b { right: 6%; bottom: -36%; }
+  }
+
+  /* sections */
+  section { padding: clamp(72px, 9vw, 128px) 0; }
+  .section-head { max-width: 640px; margin-bottom: clamp(36px, 5vw, 64px); }
+  .section-head p { margin-top: 16px; font-size: 18px; color: var(--text-2); }
+
+  .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 28px 28px 0; overflow: clip; display: flex; flex-direction: column; min-height: 560px; transition: transform .35s var(--ease), border-color .35s; }
+  .feature:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.16); }
+  .feature h3 { font-size: 26px; font-weight: 700; }
+  .feature h3 em { font-style: normal; color: var(--brand); }
+  .feature p { margin: 12px 0 28px; color: var(--text-2); font-size: 16px; }
+  .feature .phone { position: relative; width: 78%; margin: auto auto -46% 11%; transform: rotate(-4deg); filter: drop-shadow(0 24px 40px rgba(0,0,0,.5)); }
+  .feature:nth-child(2) .phone { transform: rotate(3deg); }
+  @media (max-width: 960px) { .features { grid-template-columns: 1fr; } .feature { min-height: 0; } .feature .phone { width: 62%; margin-bottom: -38%; } }
+
+  .how { background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .how .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .card { background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 32px; }
+  .card h3 { font-size: 22px; font-weight: 600; margin-bottom: 12px; }
+  .card p { color: var(--text-2); font-size: 16px; }
+  .card code { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 14px; color: var(--text); background: var(--surface-2); padding: 2px 7px; border-radius: 6px; }
+  .note { margin-top: 24px; padding: 20px 24px; border-radius: var(--radius); background: var(--bg); border: 1px solid var(--line); color: var(--text-2); font-size: 15px; }
+  @media (max-width: 760px) { .how .cols { grid-template-columns: 1fr; } }
+
+  .tv .wrap { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+  .tv-frame { border-radius: 18px; overflow: hidden; border: 1px solid var(--line); box-shadow: 0 40px 80px rgba(0,0,0,.55); background: #000; }
+  .tv-frame img { width: 100%; }
+  .tv ul { margin: 24px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; color: var(--text-2); }
+  .tv li { padding-left: 22px; position: relative; }
+  .tv li::before { content: ""; position: absolute; left: 0; top: .62em; width: 8px; height: 8px; border-radius: 50%; background: var(--brand); }
+  @media (max-width: 860px) { .tv .wrap { grid-template-columns: 1fr; } }
+
+  .plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .plan { border-radius: var(--radius-lg); padding: 36px; border: 1px solid var(--line); background: var(--surface); }
+  .plan h3 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .plan .sub { color: var(--text-2); margin-bottom: 26px; }
+  .plan ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 14px; }
+  .plan li { display: flex; gap: 12px; align-items: baseline; color: var(--text-2); }
+  .plan li b { color: var(--text); font-weight: 600; }
+  .plan li::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; background: var(--surface-2); transform: translateY(3px); mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 14px no-repeat, linear-gradient(#000 0 0); mask-composite: exclude; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5L20 7'/%3E%3C/svg%3E") center / 14px no-repeat; background: var(--text-3); }
+  .plan.premium { border-color: rgba(232,133,35,.45); background: linear-gradient(180deg, rgba(232,133,35,.10), rgba(232,133,35,0) 60%), var(--surface); }
+  .plan.premium h3 { color: var(--premium); }
+  .plan.premium li::before { background: var(--premium); }
+  .plan .fine { margin-top: 26px; font-size: 13px; color: var(--text-3); }
+  @media (max-width: 760px) { .plans { grid-template-columns: 1fr; } }
+
+  .privacy .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .privacy .card ul { margin: 12px 0 0; padding-left: 18px; color: var(--text-2); font-size: 16px; display: grid; gap: 8px; }
+  @media (max-width: 760px) { .privacy .grid { grid-template-columns: 1fr; } }
+
+  .community .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .community .card { display: flex; flex-direction: column; gap: 12px; }
+  .community .card p { flex: 1; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; padding: 12px 18px; border-radius: 999px; background: var(--brand); color: #fff; font-weight: 600; font-size: 15px; transition: transform .25s var(--ease), filter .25s; }
+  .btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+  .btn.secondary { background: var(--surface-2); color: var(--text); border: 1px solid var(--line); cursor: pointer; font-family: inherit; }
+  .xhs { display: grid; grid-template-columns: 120px 1fr; gap: 20px; align-items: center; }
+  .xhs img { width: 120px; height: 120px; border-radius: 12px; border: 1px solid var(--line); }
+  .xhs .token { font-size: 13px; color: var(--text-3); word-break: break-all; margin-top: 8px; }
+  @media (max-width: 760px) { .community .grid { grid-template-columns: 1fr; } }
+
+  footer { border-top: 1px solid var(--line); padding: 40px 0 56px; color: var(--text-3); font-size: 14px; }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 32px; justify-content: space-between; align-items: center; }
+  footer a:hover { color: var(--text); }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+  .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .feature, .badge { transition: none; } }
+
+  /* i18n: show the active language only */
+  [lang-zh] { display: none; }
+  html[data-lang="zh"] [lang-en] { display: none; }
+  html[data-lang="zh"] [lang-zh] { display: revert; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="assets/icon.png" alt="" width="28" height="28">CineChase</a>
+    <div class="nav-links">
+      <a href="#features"><span lang-en>Features</span><span lang-zh>功能</span></a>
+      <a href="#how"><span lang-en>How it works</span><span lang-zh>工作方式</span></a>
+      <a href="#tv">Apple TV</a>
+      <a href="#premium">Premium</a>
+      <a href="#community"><span lang-en>Community</span><span lang-zh>社群</span></a>
+      <a href="#privacy"><span lang-en>Privacy</span><span lang-zh>隐私</span></a>
+    </div>
+    <button class="lang" id="lang" type="button" aria-label="Switch language">中文</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1><span lang-en>Every source.<br><em>One app.</em></span><span lang-zh>所有片源，<br><em>一个 App。</em></span></h1>
+      <p class="lede"><span lang-en>CineChase plays the video sources and direct links you add. Search them all at once, pick up where you left off, and keep what you love. On iPhone and Apple TV.</span><span lang-zh>CineChase 播放你自己添加的视频源与直链。一次搜索所有片源，从上次停下的地方继续，收藏你喜欢的内容。iPhone 与 Apple TV 皆可用。</span></p>
+      <div class="badges">
+        <a class="badge" href="https://apps.apple.com/app/id6757168913" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.37 12.7c.02 2.5 2.2 3.33 2.22 3.34-.02.06-.35 1.2-1.15 2.37-.69 1.01-1.41 2.02-2.54 2.04-1.11.02-1.47-.66-2.74-.66-1.27 0-1.67.64-2.72.68-1.09.04-1.92-1.09-2.62-2.1-1.43-2.07-2.52-5.84-1.06-8.39.73-1.27 2.03-2.07 3.44-2.09 1.07-.02 2.08.72 2.74.72.65 0 1.88-.89 3.17-.76.54.02 2.06.22 3.03 1.65-.08.05-1.81 1.06-1.77 3.2zM14.3 6.5c.58-.7.97-1.68.86-2.65-.84.03-1.85.56-2.45 1.26-.54.62-1.01 1.62-.88 2.57.93.07 1.89-.47 2.47-1.18z"/></svg>
+          <span><small lang-en>Download on the</small><small lang-zh>在 App Store</small><span lang-en>App Store</span><span lang-zh>下载</span></span>
+        </a>
+        <a class="badge ghost" href="https://apps.apple.com/app/id6757168913?platform=appleTV" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 20h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <span><small lang-en>Also on</small><small lang-zh>同时支持</small>Apple TV</span>
+        </a>
+      </div>
+    </div>
+    <div class="hero-media" aria-hidden="true">
+      <div class="phone a"><div class="screen"><img src="assets/shot-discover.webp" alt="" loading="eager"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+      <div class="phone b"><div class="screen"><img src="assets/shot-detail.webp" alt="" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+    </div>
+  </div>
+</header>
+
+<section id="features">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span lang-en>What it does</span><span lang-zh>功能</span></div>
+      <h2><span lang-en>Three things, done properly.</span><span lang-zh>三件事，做到位。</span></h2>
+    </div>
+    <div class="features">
+      <article class="feature reveal">
+        <h3><span lang-en>Search once. <em>Find it everywhere.</em></span><span lang-zh>搜一次，<em>全都找到。</em></span></h3>
+        <p><span lang-en>One search runs across every source you've added. The same title from several sources is merged into one result, so you pick the source, not the duplicate.</span><span lang-zh>一次搜索覆盖你添加的所有片源。同一部作品在不同片源的结果会合并为一条，你只需选择片源，而不是在重复项里挑。</span></p>
+        <div class="phone"><div class="screen"><img src="assets/shot-search.webp" alt="CineChase search results merged across sources" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+      </article>
+      <article class="feature reveal">
+        <h3><span lang-en>Stopped at episode 10? <em>Resume there.</em></span><span lang-zh>看到第 10 集？<em>接着看。</em></span></h3>
+        <p><span lang-en>Continue Watching sits at the top of Discover. Every title remembers the episode and the position, even after you switch sources.</span><span lang-zh>“继续观看”就在发现页顶部。每部作品都记得你看到的集数和进度，切换片源也不会丢。</span></p>
+        <div class="phone"><div class="screen"><img src="assets/shot-detail.webp" alt="CineChase detail page with Continue button" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+      </article>
+      <article class="feature reveal">
+        <h3><span lang-en>Save it now. <em>Watch it later.</em></span><span lang-zh>先收藏，<em>稍后看。</em></span></h3>
+        <p><span lang-en>Bookmarks and history live together in your Library, each tagged with the source it came from.</span><span lang-zh>收藏与历史都在“我的”里，并标明来自哪个片源。</span></p>
+        <div class="phone"><div class="screen"><img src="assets/shot-library.webp" alt="CineChase library of bookmarked titles" loading="lazy"></div><img class="bezel" src="assets/iphone-bezel.png" alt=""></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span lang-en>How it works</span><span lang-zh>工作方式</span></div>
+      <h2><span lang-en>A player for your sources. Not a content library.</span><span lang-zh>它是你片源的播放器，不是内容库。</span></h2>
+      <p><span lang-en>CineChase does not host, provide or curate any video. Like a browser or VLC, it plays media from locations you give it. You add content in one of two ways.</span><span lang-zh>CineChase 不托管、不提供、不推荐任何视频。它像浏览器或 VLC 一样，播放你指定位置的媒体。你可以通过以下两种方式添加内容。</span></p>
+    </div>
+    <div class="cols">
+      <div class="card reveal">
+        <h3><span lang-en>Sources</span><span lang-zh>视频源</span></h3>
+        <p><span lang-en>Add a configuration URL that returns JSON describing a source's name, API address and type. CineChase asks that API for categories, lists and details, and parses the playable URLs. Supported sources use JSON-based formats such as Maccms/VOD-style APIs.</span><span lang-zh>添加一个返回 JSON 的配置地址，其中描述片源的名称、API 地址和类型。CineChase 向该 API 请求分类、列表和详情，并解析出可播放的地址。支持 Maccms/VOD 等基于 JSON 的接口格式。</span></p>
+      </div>
+      <div class="card reveal">
+        <h3><span lang-en>Direct links</span><span lang-zh>直链</span></h3>
+        <p><span lang-en>Paste an individual video URL, such as <code>.m3u8</code> or <code>.mp4</code>. It's stored only on your device and played directly, for links you already have.</span><span lang-zh>直接粘贴单个视频地址，例如 <code>.m3u8</code> 或 <code>.mp4</code>。它只保存在你的设备上并直接播放，适合你手上已有的链接。</span></p>
+      </div>
+    </div>
+    <p class="note reveal" id="content"><span lang-en><b>Content responsibility.</b> All sources and links are provided by you. Access, legality and permissions are the responsibility of the user and the original provider. CineChase has no control over the availability, legality or ownership of third-party content.</span><span lang-zh><b>内容责任。</b>所有片源与链接均由你提供。访问权限、合法性与授权由用户及原始提供方负责。CineChase 无法控制第三方内容的可用性、合法性或归属。</span></p>
+  </div>
+</section>
+
+<section class="tv" id="tv">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="eyebrow">iPhone + Apple TV</div>
+      <h2><span lang-en>One purchase.<br>Both screens.</span><span lang-zh>一次购买，<br>两块屏幕。</span></h2>
+      <ul>
+        <li><span lang-en>The Apple TV app has the same sources, bookmarks and Continue Watching, built for the remote.</span><span lang-zh>Apple TV 版拥有同样的片源、收藏和继续观看，为遥控器而设计。</span></li>
+        <li><span lang-en>Premium bought on one device unlocks the other.</span><span lang-zh>在任一设备购买 Premium，另一设备同步解锁。</span></li>
+        <li><span lang-en>AirPlay and Picture in Picture on iPhone, through the system player.</span><span lang-zh>iPhone 上通过系统播放器支持 AirPlay 与画中画。</span></li>
+      </ul>
+    </div>
+    <div class="tv-frame reveal"><img src="assets/topshelf.webp" alt="CineChase on the Apple TV home screen" loading="lazy"></div>
+  </div>
+</section>
+
+<section id="premium">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span lang-en>Free and Premium</span><span lang-zh>免费与 Premium</span></div>
+      <h2><span lang-en>Free to start. Premium when you want every source.</span><span lang-zh>免费开始，想要全部片源时再升级。</span></h2>
+    </div>
+    <div class="plans">
+      <div class="plan reveal">
+        <h3><span lang-en>Free</span><span lang-zh>免费</span></h3>
+        <p class="sub"><span lang-en>Everything you need to try it with your own sources.</span><span lang-zh>用你自己的片源试用所需的一切。</span></p>
+        <ul>
+          <li><span><b>2</b> <span lang-en>active sources</span><span lang-zh>个启用的片源</span></span></li>
+          <li><span><b>10</b> <span lang-en>bookmarks</span><span lang-zh>个收藏</span></span></li>
+          <li><span><b>5</b> <span lang-en>direct links</span><span lang-zh>条直链</span></span></li>
+          <li><span lang-en>Search, Continue Watching and history, no limits</span><span lang-zh>搜索、继续观看与历史记录，不限数量</span></li>
+        </ul>
+      </div>
+      <div class="plan premium reveal">
+        <h3>Premium</h3>
+        <p class="sub"><span lang-en>No limits on sources, bookmarks or direct links.</span><span lang-zh>片源、收藏与直链均不限数量。</span></p>
+        <ul>
+          <li><span lang-en>Unlimited active sources</span><span lang-zh>不限启用片源</span></li>
+          <li><span lang-en>Unlimited bookmarks and direct links</span><span lang-zh>不限收藏与直链</span></li>
+          <li><span lang-en>7-day free trial, then monthly or yearly</span><span lang-zh>7 天免费试用，之后按月或按年订阅</span></li>
+          <li><span lang-en>Shared across iPhone and Apple TV</span><span lang-zh>iPhone 与 Apple TV 共享</span></li>
+        </ul>
+        <p class="fine"><span lang-en>Auto-renewable subscription billed by Apple. The trial starts only after you confirm the App Store purchase sheet, where the price and renewal terms for your region are shown. Cancel any time in your Apple Account settings. Restore purchases from Settings in the app.</span><span lang-zh>由 Apple 代收的自动续订订阅。试用仅在你确认 App Store 购买页后开始，该页面会显示你所在地区的价格与续订条款。可随时在 Apple 账户设置中取消；可在 App 的“设置”中恢复购买。</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="community" id="community">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span lang-en>Community</span><span lang-zh>社群</span></div>
+      <h2><span lang-en>Ask, report a source, hear about updates.</span><span lang-zh>提问、反馈片源、获取更新。</span></h2>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <h3>Telegram</h3>
+        <p><span lang-en>The fastest way to reach us and other users. Beta builds are announced here first.</span><span lang-zh>联系我们和其他用户最快的方式。测试版会第一时间在这里发布。</span></p>
+        <a class="btn" href="https://t.me/+sCYOeq35kFdiZDM1" rel="noopener"><span lang-en>Join the Telegram group</span><span lang-zh>加入 Telegram 群</span></a>
+      </div>
+      <div class="card reveal">
+        <h3><span lang-en>Xiaohongshu</span><span lang-zh>小红书</span></h3>
+        <div class="xhs">
+          <img src="assets/xhs-qr.jpg" alt="Xiaohongshu group QR code" loading="lazy">
+          <div>
+            <p><span lang-en>Scan in the Xiaohongshu app, or copy the group code and open the app.</span><span lang-zh>用小红书 App 扫码，或复制群口令后打开小红书。</span></p>
+            <button class="btn secondary" type="button" id="xhs-copy" data-token="3【长按复制，小红书APP见】 10月24日到期，&quot;CineChase公测群&quot;志同道合处 HU7331 :/#d🍖🍋😆🐷🐨🍎🥕🤗🐔😯🐧🍅"><span lang-en>Copy group code</span><span lang-zh>复制群口令</span></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="note reveal" style="margin-top:20px"><span lang-en>Email works too: </span><span lang-zh>也可以发邮件：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></p>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span lang-en>Privacy policy</span><span lang-zh>隐私政策</span></div>
+      <h2><span lang-en>Your data stays on your device.</span><span lang-zh>你的数据留在你的设备上。</span></h2>
+      <p><span lang-en>CineChase does not collect, transmit or sell personal data. There is no account, no analytics, no advertising and no third-party tracking.</span><span lang-zh>CineChase 不收集、不传输、不出售个人数据。没有账户、没有统计分析、没有广告，也没有第三方追踪。</span></p>
+    </div>
+    <div class="grid">
+      <div class="card reveal">
+        <h3><span lang-en>Stored locally, never sent to us</span><span lang-zh>仅本地存储，不会发送给我们</span></h3>
+        <ul>
+          <li><span lang-en>Source configurations and direct links you add</span><span lang-zh>你添加的片源配置与直链</span></li>
+          <li><span lang-en>Bookmarks, viewing history and playback progress</span><span lang-zh>收藏、观看历史与播放进度</span></li>
+          <li><span lang-en>App preferences such as language</span><span lang-zh>语言等 App 偏好设置</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3><span lang-en>Network requests</span><span lang-zh>网络请求</span></h3>
+        <ul>
+          <li><span lang-en>The app contacts only the sources and links you add, to list and play their media, plus Apple for purchases.</span><span lang-zh>App 只会连接你添加的片源与链接以获取列表和播放，以及 Apple 的购买服务。</span></li>
+          <li><span lang-en>Our support site is used for the optional demo source and the community links.</span><span lang-zh>我们的支持站点仅用于可选的示例片源与社群链接。</span></li>
+          <li><span lang-en>Payments are handled entirely by Apple. We never see payment details.</span><span lang-zh>付款完全由 Apple 处理，我们不会接触任何支付信息。</span></li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <h3><span lang-en>Children</span><span lang-zh>儿童</span></h3>
+        <ul><li><span lang-en>CineChase does not knowingly collect any data from children under 13.</span><span lang-zh>CineChase 不会有意收集 13 岁以下儿童的任何数据。</span></li></ul>
+      </div>
+      <div class="card reveal">
+        <h3><span lang-en>Changes and contact</span><span lang-zh>更新与联系</span></h3>
+        <ul>
+          <li><span lang-en>Updates to this policy are posted on this page.</span><span lang-zh>本政策如有更新，会发布在本页面。</span></li>
+          <li><span lang-en>Questions or feedback: </span><span lang-zh>问题或反馈：</span><a href="mailto:cinechase.app@gmail.com" style="color:var(--text)">cinechase.app@gmail.com</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2025 CineChase</span>
+    <span><span lang-en>Poster artwork © Blender Foundation, CC BY</span><span lang-zh>海报图片 © Blender Foundation，CC BY 授权</span></span>
+    <span><a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener"><span lang-en>Terms of Use</span><span lang-zh>使用条款</span></a> · <a href="#privacy"><span lang-en>Privacy</span><span lang-zh>隐私</span></a> · <a href="mailto:cinechase.app@gmail.com"><span lang-en>Support</span><span lang-zh>支持</span></a></span>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement, btn = document.getElementById('lang');
+    var saved = null; try { saved = localStorage.getItem('cc-lang'); } catch (e) {}
+    var zh = saved ? saved === 'zh' : /^zh/i.test(navigator.language || '');
+    function apply() { root.setAttribute('data-lang', zh ? 'zh' : 'en'); root.lang = zh ? 'zh-Hans' : 'en'; btn.textContent = zh ? 'EN' : '中文'; }
+    btn.addEventListener('click', function () { zh = !zh; try { localStorage.setItem('cc-lang', zh ? 'zh' : 'en'); } catch (e) {} apply(); });
+    apply();
+    var copy = document.getElementById('xhs-copy');
+    if (copy) copy.addEventListener('click', function () {
+      var t = copy.getAttribute('data-token'), label = copy.innerHTML;
+      function done(ok) { copy.textContent = ok ? (zh ? '已复制' : 'Copied') : (zh ? '复制失败' : 'Copy failed'); setTimeout(function () { copy.innerHTML = label; }, 1800); }
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(function () { done(true); }, function () { done(false); }); else done(false);
+    });
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { rootMargin: '0px 0px -10% 0px' });
+      document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    } else { document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); }); }
+  })();
+</script>
+</body>
+</html>
